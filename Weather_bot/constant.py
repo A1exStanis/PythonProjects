@@ -15,6 +15,10 @@ MAIN_SCREEN_BUTTONS = (TEMPERATURE,
                        SUNRISE_SET, 
                        BACK,)
 
+# MAIN_DICT = {
+#     'Temperature': data['main']['temp']
+# }
+
 GUIDE = 'Choose what you want to know: '
 
 # https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=6a2e96dbdcbe64768b7746f42e9f3aba
