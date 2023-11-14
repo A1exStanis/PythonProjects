@@ -73,8 +73,6 @@ def message_varification_handler(message: Message, data: dict) -> None:
                          reply_markup=markup)
         bot.register_next_step_handler(
             message, message_varification_handler, data)
-    else:
-
 
 
 bot.polling(non_stop=True)
