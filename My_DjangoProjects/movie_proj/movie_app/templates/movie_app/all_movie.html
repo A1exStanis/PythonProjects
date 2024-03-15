@@ -1,0 +1,16 @@
+{% extends 'movie_app/base.html' %}
+
+{% block title %}
+Всі фільми
+{% endblock %}
+
+
+
+{% block content %}
+<h2>Список всіх фільмів</h2>
+<ul>
+    {% for movie in movies %}
+     <li> {{ movie.name }}, рейтинг - {{ movie.rating }}, рік - {{ movie.year | default:"Невизачений" }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

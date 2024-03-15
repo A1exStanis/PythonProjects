@@ -17,4 +17,10 @@ def passcode(lenght = 8) -> None:
                     break
     print(code)
 
-passcode()
+# passcode()
+
+def q():
+    while True:
+        print(1)
+
+q()
