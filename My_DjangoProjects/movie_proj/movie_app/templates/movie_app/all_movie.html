@@ -10,7 +10,14 @@
 <h2>Список всіх фільмів</h2>
 <ul>
     {% for movie in movies %}
-     <li> {{ movie.name }}, рейтинг - {{ movie.rating }}, рік - {{ movie.year | default:"Невизачений" }}</li>
+     <li><a href="{{ movie.get_url }}">{{ movie.name }}</a>,
+         рейтинг - {{ movie.rating }},
+         рік - {{ movie.year | default:"Невизачений" }}</li>
     {% endfor %}
 </ul>
+<h3>Всього фільмів - {{ agg.id__count }}</h3>
+<h3>Середній бюджет - {{ agg.budget__avg }}</h3>
+<h3>Максимальний рейтинг - {{ agg.rating__max }}</h3>
+<h3>Мінімальний рейтинг - {{ agg.rating__min }}</h3>
+
 {% endblock %}

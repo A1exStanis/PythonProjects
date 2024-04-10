@@ -1,0 +1,12 @@
+{% extends 'movie_app/base.html' %}
+
+{% block title %}
+Інформація про фільм
+{% endblock %}
+
+
+
+{% block content %}
+<h1>Фільм {{ movie.name }}</h1>
+     <h2> {{ movie.name }}, рейтинг - {{ movie.rating }}, рік - {{ movie.year | default:"Невизачений" }}</h2>
+{% endblock %}
