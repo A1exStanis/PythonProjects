@@ -32,8 +32,8 @@ class RatingFilter(admin.SimpleListFilter):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['name', 'rating', 'year', 'budget', 'currency', 'rating_status']
-    list_editable = ['rating', 'year', 'currency', 'budget']
+    list_display = ['name', 'rating', 'director', 'budget', 'currency', 'rating_status']
+    list_editable = ['rating', 'director', 'currency', 'budget']
     ordering = ['-rating', '-name']
     list_per_page = 10
     actions = ['set_dollar', 'set_euro']
@@ -62,7 +62,7 @@ class MovieAdmin(admin.ModelAdmin):
         self.message_user(request, f'Було виконано {count_update} операцій', messages.ERROR)
 
 
-
-@admin.register(Director)
-class DirectorAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'director_email']
+admin.site.register(Director)
+# @admin.register(Director)
+# class DirectorAdmin(admin.ModelAdmin):
+#     list_display = ['first_name', 'last_name', 'director_email']

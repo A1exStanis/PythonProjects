@@ -11,7 +11,7 @@ class Director(models.Model):
     last_name = models.CharField(max_length=100)
     director_email = models.EmailField()
     def __str__(self):
-        return f'{self.first_name}-{self.last_name}'
+        return f'{self.first_name} {self.last_name}'
 
 
 class Movie(models.Model):
@@ -31,6 +31,7 @@ class Movie(models.Model):
     budget = models.IntegerField(default=1000000, validators=[MinValueValidator(1)])
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default=USD)
     slug = models.SlugField(default='', null=False)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
