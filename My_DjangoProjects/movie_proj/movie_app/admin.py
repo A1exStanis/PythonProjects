@@ -1,5 +1,5 @@
 from django.contrib import admin, messages
-from .models import Movie, Director
+from .models import Movie, Director, Actor, DressingRoom
 from django.db.models import QuerySet
 
 # Register your models here.
@@ -37,6 +37,7 @@ class MovieAdmin(admin.ModelAdmin):
     ordering = ['-rating', '-name']
     list_per_page = 10
     actions = ['set_dollar', 'set_euro']
+    filter_horizontal = ['actors']
     search_fields = ['name__startswith', 'rating']
     list_filter = ['name', 'currency', RatingFilter]
     prepopulated_fields = {'slug': ('name',)}
@@ -63,6 +64,9 @@ class MovieAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Director)
-# @admin.register(Director)
-# class DirectorAdmin(admin.ModelAdmin):
-#     list_display = ['first_name', 'last_name', 'director_email']
+admin.site.register(Actor)
+
+
+@admin.register(DressingRoom)
+class DressingRoomAdmin(admin.ModelAdmin):
+    list_display = ['floor', 'number', 'actor']
