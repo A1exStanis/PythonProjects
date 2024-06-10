@@ -1,6 +1,9 @@
 import typing as t
 
+import pandas as pd
 from telebot import types
+
+import constant
 
 
 def build_reply_markup(
@@ -78,7 +81,7 @@ def phone_request(
         resize_keyboard=resize_keyboard)
 
     button = types.KeyboardButton(
-        text='Залишити свій номер',
+        text='Залишити свій номер📞',
         request_contact=True)
     markup.add(button)
     button = types.KeyboardButton(
@@ -86,3 +89,7 @@ def phone_request(
     markup.add(button)
 
     return markup
+
+
+def get_df_from_sheet(sheet_url: str, sheet_id: str) -> pd.DataFrame:
+    return pd.read_csv((sheet_url).format(sheet_id=sheet_id))
