@@ -226,5 +226,4 @@ def call_or_back_handler_12_15(message: Message) -> None:
                          reply_markup=markup)
         bot.register_next_step_handler(message, call_or_back_handler_12_15)
 
-
 bot.polling(non_stop=True)
