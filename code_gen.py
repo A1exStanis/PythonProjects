@@ -8,4 +8,4 @@ def code_gen(lenght:int) -> str:
             code += sumb
         print(f'Your code: {code}')
 
-code_gen(7)
+code_gen(20)

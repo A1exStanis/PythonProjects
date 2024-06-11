@@ -48,7 +48,11 @@ def next_step(message: Message) -> None:
                          reply_markup=markup)
         bot.register_next_step_handler(message, receive_call_handler)
     elif message.text == constant.ABOUT_US:
-        pass
+        markup = build_reply_markup([constant.BACK])
+        bot.send_message(message.chat.id,
+                         constant.ABOUT_US_MESSAGE,
+                         reply_markup=markup)
+        bot.register_next_step_handler(message, receive_call_handler)
     else:
         markup = markup = build_reply_markup(constant.WELCOME_BUTTONS)
         bot.send_message(message.chat.id,
@@ -60,7 +64,7 @@ def next_step(message: Message) -> None:
 def receive_call_handler(message: Message) -> None:
     if message.contact:
         markup = build_reply_markup([constant.BACK])
-        bot.send_contact(message.chat.id,    #constant.VLAD_CHAT_ID
+        bot.send_contact(constant.VLAD_CHAT_ID,
                          phone_number=message.contact.phone_number,
                          first_name=message.contact.first_name,
                          last_name=message.contact.last_name)
@@ -140,7 +144,7 @@ def order_12_15_handler(message: Message) -> None:
             bot.send_message(message.chat.id,
                              position,
                              reply_markup=markup)
-        bot.register_next_step_handler(message, call_or_back_handler)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
     elif message.text == constant.SWEATSHIRT:
         goods = list(str(df.loc[constant.SPREADSHEET_LOC_BY_TEXT[constant.SWEATSHIRT]]).split(','))
         markup = build_reply_markup(constant.ORDER_BUTTONS)
@@ -148,7 +152,7 @@ def order_12_15_handler(message: Message) -> None:
             bot.send_message(message.chat.id,
                              position,
                              reply_markup=markup)
-        bot.register_next_step_handler(message, call_or_back_handler)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
     elif message.text == constant.SHORTS:
         goods = list(str(df.loc[constant.SPREADSHEET_LOC_BY_TEXT[constant.SHORTS]]).split(','))
         markup = build_reply_markup(constant.ORDER_BUTTONS)
@@ -156,7 +160,7 @@ def order_12_15_handler(message: Message) -> None:
             bot.send_message(message.chat.id,
                              position,
                              reply_markup=markup)
-        bot.register_next_step_handler(message, call_or_back_handler)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
     elif message.text == constant.T_SHIRT:
         goods = list(str(df.loc[constant.SPREADSHEET_LOC_BY_TEXT[constant.T_SHIRT]]).split(','))
         markup = build_reply_markup(constant.ORDER_BUTTONS)
@@ -164,7 +168,7 @@ def order_12_15_handler(message: Message) -> None:
             bot.send_message(message.chat.id,
                              position,
                              reply_markup=markup)
-        bot.register_next_step_handler(message, call_or_back_handler)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
     elif message.text == constant.ACCESSORIES:
         goods = list(str(df.loc[constant.SPREADSHEET_LOC_BY_TEXT[constant.ACCESSORIES]]).split(','))
         markup = build_reply_markup(constant.ORDER_BUTTONS)
@@ -172,7 +176,7 @@ def order_12_15_handler(message: Message) -> None:
             bot.send_message(message.chat.id,
                              position,
                              reply_markup=markup)
-        bot.register_next_step_handler(message, call_or_back_handler)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
     else:
         markup = phone_request()
         bot.send_message(message.chat.id,
@@ -193,6 +197,10 @@ def call_or_back_handler(message: Message) -> None:
         bot.send_message(message.chat.id,
                          constant.NUMBERS,
                          reply_markup=markup)
+        bot.send_contact(constant.VLAD_CHAT_ID,
+                         phone_number=message.contact.phone_number,
+                         first_name=message.contact.first_name,
+                         last_name=message.contact.last_name)
         bot.register_next_step_handler(message, receive_call_handler)
     else:
         markup = phone_request()
@@ -200,6 +208,23 @@ def call_or_back_handler(message: Message) -> None:
                          constant.USE_NUMBER_BELOW,
                          reply_markup=markup)
         bot.register_next_step_handler(message, call_or_back_handler)
+
+
+def call_or_back_handler_12_15(message: Message) -> None:
+    if message.text == constant.BACK:
+        markup = build_reply_markup(constant.CHOICE_BUTTONS)
+        bot.send_message(message.chat.id,
+                         constant.ORDER_3_7_DAYS_MESSAGE,
+                         reply_markup=markup)
+        bot.register_next_step_handler(message, order_12_15_handler)
+    elif message.text == constant.CALL:
+        receive_call_handler(message)
+    else:
+        markup = phone_request()
+        bot.send_message(message.chat.id,
+                         constant.USE_NUMBER_BELOW,
+                         reply_markup=markup)
+        bot.register_next_step_handler(message, call_or_back_handler_12_15)
 
 
 bot.polling(non_stop=True)
