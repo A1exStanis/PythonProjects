@@ -128,18 +128,38 @@
 # If the user enters something that is not an integer, this function should catch an error and ask the user to enter an integer again. 
 # if the user inputs an integer, the program should print this number and quit w/o any error.
 
-def out_func():
-    number = input("Type an integer number:")
-    print(f"You typed:{number}.")
-    return in_func(number)
-def in_func(number):
-    while type(number) != int:
-        try:
-            int_number = int(number)
-            print(int_number)
-            break
-        except Exception:
-            print("Something goes wrong, try to type an integer")
-            number = input("Type an integer number:")
-    
-out_func()
+# def out_func():
+#     number = input("Type an integer number:")
+#     print(f"You typed:{number}.")
+#     return in_func(number)
+# def in_func(number):
+#     while type(number) != int:
+#         try:
+#             int_number = int(number)
+#             print(int_number)
+#             break
+#         except Exception:
+#             print("Something goes wrong, try to type an integer")
+#             number = input("Type an integer number:")
+#
+# out_func()
+
+# x = 121
+# x = list(str(x))
+# for i, il in enumerate(x):
+#     if il != x[-i]:
+#         print(False)
+#     print(True)
+
+l1 = [2,4,3]
+l2 = [5,6,4]
+l3 = []
+sum = 0
+for i, il in enumerate(l1):
+    if il+l2[i]>=10:
+        l3.append((il+l2[i])%10+sum)
+        sum = 1
+    else:
+        l3.append(il+l2[i]+sum)
+        sum = 0
+print(l3)
