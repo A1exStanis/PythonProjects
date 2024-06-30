@@ -64,7 +64,7 @@ def next_step(message: Message) -> None:
 def receive_call_handler(message: Message) -> None:
     if message.contact:
         markup = build_reply_markup([constant.BACK])
-        bot.send_contact(constant.VLAD_CHAT_ID,
+        bot.send_contact(message.chat.id,   #constant.VLAD_CHAT_ID,
                          phone_number=message.contact.phone_number,
                          first_name=message.contact.first_name,
                          last_name=message.contact.last_name)
@@ -193,15 +193,7 @@ def call_or_back_handler(message: Message) -> None:
                          reply_markup=markup)
         bot.register_next_step_handler(message, order_3_7_handler)
     elif message.text == constant.CALL:
-        markup = phone_request()
-        bot.send_message(message.chat.id,
-                         constant.NUMBERS,
-                         reply_markup=markup)
-        bot.send_contact(constant.VLAD_CHAT_ID,
-                         phone_number=message.contact.phone_number,
-                         first_name=message.contact.first_name,
-                         last_name=message.contact.last_name)
-        bot.register_next_step_handler(message, receive_call_handler)
+        receive_call_handler(message)
     else:
         markup = phone_request()
         bot.send_message(message.chat.id,
@@ -225,5 +217,6 @@ def call_or_back_handler_12_15(message: Message) -> None:
                          constant.USE_NUMBER_BELOW,
                          reply_markup=markup)
         bot.register_next_step_handler(message, call_or_back_handler_12_15)
+
 
 bot.polling(non_stop=True)
