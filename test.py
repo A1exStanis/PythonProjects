@@ -151,15 +151,228 @@
 #         print(False)
 #     print(True)
 
-l1 = [2,4,3]
-l2 = [5,6,4]
-l3 = []
-sum = 0
-for i, il in enumerate(l1):
-    if il+l2[i]>=10:
-        l3.append((il+l2[i])%10+sum)
-        sum = 1
-    else:
-        l3.append(il+l2[i]+sum)
-        sum = 0
-print(l3)
+# l1 = [2,4,3]
+# l2 = [5,6,4]
+# l3 = []
+# sum = 0
+# for i, il in enumerate(l1):
+#     if il+l2[i]>=10:
+#         l3.append((il+l2[i])%10+sum)
+#         sum = 1
+#     else:
+#         l3.append(il+l2[i]+sum)
+#         sum = 0
+# print(l3)
+
+# count_list = []
+# for i, il in enumerate(s):
+#     l = 0
+#     for q, ql in enumerate(s[i:]):
+#         if il != ql or i == q:
+#             l += 1
+#         else:
+#             count_list.append(l)
+#     print (count_list)
+#         while q>=i and il!=ql
+# s = 'abcb'
+# count_list = []
+# if len(s) != 0:
+#     l = 0
+#     for i, il in enumerate(s):
+#         l = 0
+#         count = 1
+#         if count == len(s):
+#             l += 1
+#             count_list.append(l)
+#             break
+#         for q, ql in enumerate(s[i:]):
+#             if il != ql or q == 0:
+#                 l += 1
+#                 count += 1
+#             if q==s[-1]:
+#                 count_list.append(l)
+#                 l = 0
+#                 break
+#     print(count_list)
+# else:
+#     print(0)
+
+# def findMedianSortedArrays( nums1: list, nums2: list) -> float:
+#     compl_nums = nums1 + nums2
+#     compl_nums.sort()
+#     long = len(compl_nums)
+#     if long % 2 == 0:
+#         median = int(long / 2)
+#         new_list = compl_nums[(median - 1):(median + 1)]
+#         result = sum(new_list) / 2
+#     else:
+#         q = long/2
+#         x = round(long/2)
+#         median = int(x)
+#         result = compl_nums[(median)]
+#     print(result)
+#
+#
+# findMedianSortedArrays(nums1=nums1,nums2=nums2)
+
+# def longestPalindrome(s: str) -> str:
+#     result = ''
+#     resLen = 0
+#     long = len(s)
+#     for i in range(long):
+#         l, r = i, i + 1
+#         while l >= 0 and r < long and s[l] == s[r]:
+#             if r - l + 1 > resLen:
+#                 result = s[l:r + 1]
+#                 resLen = r - l + 1
+#             l -= 1
+#             r += 1
+#         l, r = i, i
+#         while l >= 0 and r < long and s[l] == s[r]:
+#             if r - l + 1 > resLen:
+#                 result = s[l:r + 1]
+#                 resLen = r - l + 1
+#             l -= 1
+#             r += 1
+# #     return result
+# longestPalindrome(s='ac')
+
+#
+# def reverse(x: int) -> int:
+#     result = 0
+#     new_list = []
+#     if abs(x) == x:
+#         while x > 0:
+#             y = x % 10
+#             new_list.append(y)
+#             x = x // 10
+#         long = len(new_list)
+#         for i in new_list:
+#             result += i * 10**(long-1)
+#             long -= 1
+#         print (result)
+#     else:
+#         while x > 0:
+#             y = x % 10
+#             new_list.append(y)
+#             x = x // 10
+#             long = len(new_list)
+#             for i in range(long, 0, -1):
+#                 result += i * 10 ** (long - 1)
+#                 long -= 1
+#             print(-(result))
+#
+# # reverse(120)
+#
+#
+# def reverse_(x:int) -> int:
+#     minus = '-'
+#     if abs(x) == x:
+#         minus = ''
+#     result = ''
+#     x = str(abs(x))
+#     for i in x[::-1]:
+#         result += i
+#     print(int(minus + result))
+#
+# # reverse_(-120)
+# q = -2147483412
+# print(q.bit_length())
+#
+# print(2**31)
+
+
+# def longestCommonPrefix(strs: list) -> str:
+#     i = 0
+#     result = ''
+#     while strs[0][i] == strs[1][i] == strs[2][i]:
+#         i += 1
+#         result = result + strs[0][i]
+#     return result
+#
+#
+#
+# strs = ["flower","flow","flight"]
+# longestCommonPrefix(strs=strs)
+
+
+# def isMatch(s: str,p: str) ->bool:
+#     def dfs(i, j):
+#         if i >= len(s) and j >= len(p):
+#             return True
+#         if j >= len(p):
+#             return False
+#
+#         match = i < len(s) and (s[i] == p[j] or p[j] == '.')
+#         if j+1 < len(p) and p[j+1] == '*':
+#             return (dfs(i, j+2) or (match and dfs(i+1,j)))
+#         if match:
+#             return dfs(i+1, j+1)
+#         return False
+#     return dfs(0,0)
+
+
+# print(isMatch('aab','c*a*b'))
+
+# list_ = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+list_ = [1,1]
+
+
+# def maxArea(height: list) -> int:
+#     # left = len(height) - 1
+#     contain_list = []
+#     # long = len(height) - 1
+#     # for i in height:
+#     #     max_height = min(i, height[-1])
+#     #     area = max_height * long
+#     #     contain_list.append(area)
+#     #     long -= 1
+#     # print(contain_list)
+#     for i in height:
+#         for q in height:
+#             index_i = height.index(i)
+#             index_q = height.index(q)
+#             if index_i != index_q:
+#                 contain_list.append(min(i, q)*abs(index_i-index_q))
+#     print(max(contain_list))
+#
+#
+# maxArea(list_)
+
+#
+# s='()'
+# if len(s)%2 == 0:
+#     for i in range(len(s)-1):
+#         q = s[i:i+2]
+#         print(q[::-1])
+#         if q is q[::-1]:
+#             s = s[i+2]
+#             continue
+#         if s == []:
+#             print(True)
+#         else:
+#             print(False)
+#     else:
+#         print(False)
+
+
+# dict_ = {
+#     'q':'q'
+# }
+# if 'q' in dict_.keys():
+#     print(True)
+
+s = '({][})'
+
+
+def isValid(self, s: str) -> bool:
+    opcl = dict(('()', '[]', '{}'))
+    stack = []
+    for idx in s:
+        if idx in '([{':
+            stack.append(idx)
+        elif len(stack) == 0 or idx != opcl[stack.pop()]:
+            return False
+    return len(stack) == 0
+
+isValid(s)
