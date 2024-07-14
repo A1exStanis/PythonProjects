@@ -31,12 +31,12 @@ class Square:
         return self.__perimeter
 
 
-a = Square(4)
-print(a.area)
-
-a.side = 12
-print(a.area)
-print(a.perimeter)
+# a = Square(4)
+# print(a.area)
+#
+# a.side = 12
+# print(a.area)
+# print(a.perimeter)
 
 
 class User:
@@ -79,5 +79,149 @@ class User:
         self.__password = value
 
 
-a1 = User('Alex', 'sem1q')
-print(a1.secret)
+# a1 = User('Alex', 'sem1q')
+# print(a1.secret)
+
+
+class Hi:
+    def __init__(self, name):
+        self.name = name
+
+    @classmethod
+    def class_hello(cls):
+        print(f'Hello {cls}')
+
+
+# q2 = Hi('Johnny')
+# q2.class_hello()
+
+
+class DepartmentIt:
+    PYTHON_DEV = 3
+    GO_DEV = 2
+
+    @property
+    def info_prop(self) -> None:
+        print(self.PYTHON_DEV, self.GO_DEV)
+
+
+# q = DepartmentIt()
+# q.info_prop
+# DepartmentIt().info_prop
+
+
+class Employee:
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f'Employee {self.name}'
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+# w = Employee('Jack')
+# str(w)
+
+
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return self.balance + other
+        if isinstance(other, BankAccount):
+            return self.balance + other.balance
+        raise NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return self.balance * other
+        if isinstance(other, BankAccount):
+            return self.balance * other.balance
+        raise NotImplemented
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return self.balance - other
+        if isinstance(other, BankAccount):
+            return self.balance - other.balance
+        raise NotImplemented
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return self.balance / other
+        if isinstance(other, BankAccount):
+            return self.balance / other.balance
+        raise NotImplemented
+
+
+# a = BankAccount('Alex', 700)
+# b = BankAccount('Michel', 30)
+
+# print(a+100)
+# print(a+b)
+# print(a-100)
+# print(a-b)
+# print(a*100)
+# print(a*b)
+# print(a/100)
+# print(a/b)
+
+
+class Rectangle:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    @property
+    def area(self):
+        return self.a*self.b
+
+    def __eq__(self, other):
+        if isinstance(other, Rectangle):
+            return self.a == other.a and self.b == other.b
+        if isinstance(other, (int, float)):
+            return self.area == other
+        raise NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Rectangle):
+            return self.area < other.area
+        if isinstance(other, (int, float)):
+            return self.area < other
+        raise NotImplemented
+
+    def __ge__(self, other):
+        return self == other or self > other
+
+
+# a = Rectangle(1, 2)
+# b = Rectangle(3, 5)
+# print(a > b)
+
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        return (isinstance(other, Point) and
+                self.x == other.x and self.y == other.y)
+
+    def __hash__(self):
+        return hash((self.x, self.y))
+
+
+# p1 = Point(1, 2)
+# p2 = Point(1, 2)
+# p3 = Point(3, 5)
+# print(p1 == p2)
+# print(p2 == p3)
+# print(hash(p1))
+# print(hash(p2))
+# print(hash(p3))
