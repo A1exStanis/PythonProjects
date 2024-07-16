@@ -306,11 +306,11 @@ class Vector:
             raise KeyError
 
 
-# my_dict = {
-#     'q': 1,
-#     'w': 2,
-#     'e': 3
-# }
+my_dict = {
+    'q': 1,
+    'w': 2,
+    'e': 3
+}
 # p1 = Vector(**my_dict)
 # print(p1["w"])
 # p1["w"] = 10
@@ -354,7 +354,30 @@ class Student:
         return letter
 
 
-m = [3, 5, 4, 5]
-alex = Student('Alex', 'Stanis', m)
-for i in alex:
-    print(i)
+# m = [3, 5, 4, 5]
+# alex = Student('Alex', 'Stanis', m)
+# for i in alex:
+#     print(i)
+
+
+class Person:
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = name
+
+    def __str__(self):
+        return f'Person - {self.name} {self.surname}'
+
+
+class Doctor(Person):
+    def __init__(self, name, surname, age):
+        super().__init__(name, surname)
+        self.age = age
+
+    def __str__(self):
+        return f'Doctor - {self.name} {self.surname}'
+
+
+d = Doctor('Alex', 'Stanis', 22)
+print(d)
+print(d.age)
