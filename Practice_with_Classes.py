@@ -1,5 +1,6 @@
 from string import digits
 from time import perf_counter
+from timeit import timeit
 
 
 class Square:
@@ -378,6 +379,43 @@ class Doctor(Person):
         return f'Doctor - {self.name} {self.surname}'
 
 
-d = Doctor('Alex', 'Stanis', 22)
-print(d)
-print(d.age)
+# d = Doctor('Alex', 'Stanis', 22)
+# print(d)
+# print(d.age)
+
+
+class Points:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+class PointSlots:
+    __slots__ = ('x', 'y')
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+# p1 = PointSlots(3, 4)
+# print(p1.__sizeof__())
+
+
+def check_time_point():
+    s = Points(3, 4)
+    s.x = 100
+    s.x
+    del s.x
+
+
+def check_time_pointslots():
+    s = PointSlots(3, 4)
+    s.x = 100
+    s.x
+    del s.x
+
+
+# print(timeit(check_time_point))
+# print(timeit(check_time_pointslots))
+
