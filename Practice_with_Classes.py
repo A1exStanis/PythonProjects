@@ -419,3 +419,24 @@ def check_time_pointslots():
 # print(timeit(check_time_point))
 # print(timeit(check_time_pointslots))
 
+
+class CountUp:
+    def __init__(self, max):
+        self.max = max
+        self.current = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current > self.max:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current - 1
+
+
+# counter = CountUp(5)
+# for number in counter:
+#     print(number)
+
