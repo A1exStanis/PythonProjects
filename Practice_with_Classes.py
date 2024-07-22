@@ -440,3 +440,39 @@ class CountUp:
 # for number in counter:
 #     print(number)
 
+
+# Визначаємо метаклас
+# class MyMeta(type):
+#     def __new__(cls, name, bases, dct):
+#         print(f"Створення класу {name} з метакласом {cls.__name__}")
+#         dct['greeting'] = 'Hello, World!'  # Додаємо новий атрибут до класу
+#         return super().__new__(cls, name, bases, dct)
+#
+#
+# # Створюємо клас з використанням метакласу
+# class MyClass(metaclass=MyMeta):
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def greet(self):
+#         return f"{self.greeting}, {self.name}!"
+#
+#
+# # Створюємо екземпляр класу
+# obj = MyClass('Python')
+#
+# print(obj.greet())  # Виведе: Hello, World!, Python!
+
+
+class MyClass:
+    def __new__(cls, *args, **kwargs):
+        print("Creating instance...")
+        instance = super().__new__(cls)  # Allocate memory for the new instance
+        return instance
+
+    def __init__(self, value):
+        print("Initializing instance...")
+        self.value = value
+
+
+obj = MyClass(10)

@@ -1,3 +1,4 @@
+
 # Given two integer numbers, return their product only
 # if the product is equal to or lower than 1000. 
 # Otherwise, return their sum.
@@ -365,14 +366,104 @@ list_ = [1,1]
 s = '({][})'
 
 
-def isValid(self, s: str) -> bool:
-    opcl = dict(('()', '[]', '{}'))
-    stack = []
-    for idx in s:
-        if idx in '([{':
-            stack.append(idx)
-        elif len(stack) == 0 or idx != opcl[stack.pop()]:
-            return False
-    return len(stack) == 0
+# def isValid(self, s: str) -> bool:
+#     opcl = dict(('()', '[]', '{}'))
+#     stack = []
+#     for idx in s:
+#         if idx in '([{':
+#             stack.append(idx)
+#         elif len(stack) == 0 or idx != opcl[stack.pop()]:
+#             return False
+#     return len(stack) == 0
+#
+# isValid(s)
 
-isValid(s)
+
+# def my_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print('Hello')
+#         result = func(*args, **kwargs)
+#         print('Bye')
+#         return result
+#     return wrapper
+#
+# @my_decorator
+# def say_Q(name: str) -> None:
+#     print(f'Q {name}')
+#
+# say_Q('Alex')
+
+
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+
+# Генерація пари ключів
+private_key = rsa.generate_private_key(
+    public_exponent=65537,
+    key_size=2048,
+)
+
+public_key = private_key.public_key()
+
+# Серіалізація ключів для збереження або передачі
+pem = private_key.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.TraditionalOpenSSL,
+    encryption_algorithm=serialization.NoEncryption()
+)
+
+public_pem = public_key.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
+
+
+# Шифрування повідомлення
+# message = b"This is a secret message."
+# encrypted_message = public_key.encrypt(
+#     message,
+#     padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None)
+# )
+#
+# print(encrypted_message)
+#
+#
+# # Дешифрування повідомлення
+# decrypted_message = private_key.decrypt(
+#     encrypted_message,
+#     padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None)
+# )
+#
+# print(decrypted_message)  # Виведе: b"This is a secret message."
+
+
+from datetime import datetime as dt
+
+
+def time_dec(func):
+    def wrapper(*args, **kwargs):
+        print(dt.time)
+        func(*args, **kwargs)
+        print(dt.time)
+        return time_dec
+    return wrapper
+
+
+
+@time_dec
+def use_null(n):
+    for i in range(n):
+        print(0)
+
+
+# use_null(5)
+
+
+q = [1,3,3,45,17,3,45]
+
+print(set(q))
+q = set(q)
+q = list(q)
+print(q)
