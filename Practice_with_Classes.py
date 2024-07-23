@@ -1,6 +1,7 @@
 from string import digits
 from time import perf_counter
 from timeit import timeit
+from abc import ABC, abstractmethod
 
 
 class Square:
@@ -442,28 +443,28 @@ class CountUp:
 
 
 # Визначаємо метаклас
-# class MyMeta(type):
-#     def __new__(cls, name, bases, dct):
-#         print(f"Створення класу {name} з метакласом {cls.__name__}")
-#         dct['greeting'] = 'Hello, World!'  # Додаємо новий атрибут до класу
-#         return super().__new__(cls, name, bases, dct)
-#
-#
-# # Створюємо клас з використанням метакласу
-# class MyClass(metaclass=MyMeta):
-#     def __init__(self, name):
-#         self.name = name
-#
-#     def greet(self):
-#         return f"{self.greeting}, {self.name}!"
-#
-#
-# # Створюємо екземпляр класу
-# obj = MyClass('Python')
+class MyMeta(type):
+    def __new__(cls, name, bases, dct):
+        print(f"Створення класу {name} з метакласом {cls.__name__}")
+        dct['greeting'] = 'Hello, World!'  # Додаємо новий атрибут до класу
+        return super().__new__(cls, name, bases, dct)
+
+
+# Створюємо клас з використанням метакласу
+class MyClass(metaclass=MyMeta):
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return f"{self.greeting}, {self.name}!"
+
+
+# Створюємо екземпляр класу
+obj = MyClass('Python')
 #
 # print(obj.greet())  # Виведе: Hello, World!, Python!
 
-
+#
 class MyClass:
     def __new__(cls, *args, **kwargs):
         print("Creating instance...")
@@ -473,6 +474,32 @@ class MyClass:
     def __init__(self, value):
         print("Initializing instance...")
         self.value = value
+#
+#
+# obj = MyClass(10)
 
 
-obj = MyClass(10)
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimetr(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return 3.14 * self.r**2
+
+    def perimetr(self):
+        return 3.14 * self.r * 2
+
+
+cir1 = Circle(6)
+print(cir1.perimetr())
+print(cir1.area())
